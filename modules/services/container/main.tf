@@ -1,29 +1,38 @@
+# defining container env variables
+
 locals {
-  suffix_org = var.is_organizational ? "org" : "single"
   task_env_vars = concat([
     # This allows the revision to be created again if the configuration changes.
     # Annotations can't be used or they can't be ignored in the lifecycle, thus triggering
     # recreations even if the config hasn't changed.
     {
-      name  = "SECURE_URL"
-      value = var.deepfence_secure_endpoint
+      name  = "mode"
+      value = var.mode
+    },
+    {
+      name  = "mgmt-console-url"
+      value = var.mgmt-console-url
+    },
+    {
+      name  = "mgmt-console-port"
+      value = var.mgmt-console-port
+    },
+    {
+      name  = "deepfence-key"
+      value = var.deepfence-key
     },
     {
       name  = "GCP_REGION"
       value = data.google_client_config.current.region
     }
-    ], [
-    for env_key, env_value in var.extra_envs :
-    {
-      name  = env_key,
-      value = env_value
-    }
+
     ]
   )
 }
 
+# deploys application image in cloud run container
 
-resource "google_cloud_run_service" "cloud_connector" {
+resource "google_cloud_run_service" "container" {
   location = data.google_client_config.current.region
   name     = var.name
 
@@ -61,11 +70,9 @@ resource "google_cloud_run_service" "cloud_connector" {
             memory = var.memory,
           }
         }
-
-        env {
-          #TODO: Put secrets in secretsmanager?
-          name  = "SECURE_API_TOKEN"
-          value = var.deepfence_secure_api_token
+        
+        ports {
+          container_port = 8080
         }
 
         dynamic "env" {
@@ -77,14 +84,26 @@ resource "google_cloud_run_service" "cloud_connector" {
           }
         }
       }
-      service_account_name = var.cloud_connector_sa_email
+      service_account_name = var.container_sa_email
     }
   }
 }
 
+# assigns cloud run service invoker role
+
+resource "google_cloud_run_service_iam_member" "run_invoker" {
+  role     = "roles/run.invoker"
+  member   = "serviceAccount:${var.container_sa_email}"
+  service  = google_cloud_run_service.container.name
+  project  = google_cloud_run_service.container.project
+  location = google_cloud_run_service.container.location
+}
+
+# assigns read only resource access on cloud
+
 resource "google_project_iam_member" "run_viewer" {
   project = var.project_id
-  member  = "serviceAccount:${var.cloud_connector_sa_email}"
+  member  = "serviceAccount:${var.container_sa_email}"
   role    = "roles/run.viewer"
 }
 

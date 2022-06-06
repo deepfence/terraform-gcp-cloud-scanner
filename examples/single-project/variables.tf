@@ -6,3 +6,29 @@ variable "name" {
   default     = "cloud-compliance-scanner"
 }
 
+# container variables
+
+variable "mode" {
+  type        = string
+  description = "mode"
+  default     = ""
+}
+
+variable "mgmt-console-url" {
+  type        = string
+  description = "mgmt-console-url"
+  default     = ""
+}
+
+variable "mgmt-console-port" {
+  type        = string
+  description = "mgmt-console-port"
+  default     = ""
+}
+
+variable "deepfence-key" {
+  type        = string
+  description = "deepfence-key"
+  default     = ""
+}
+

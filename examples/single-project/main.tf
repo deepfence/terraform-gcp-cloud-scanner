@@ -1,30 +1,25 @@
 provider "google" {
    project = "dev1-164606"
-   region  = "us-central-1"
+   region  = "asia-east1"
 }
+# creates service account with read only access for resources
 
-resource "google_service_account" "connector_sa" {
+resource "google_service_account" "container_sa" {
   account_id   = "${var.name}-sa"
-  display_name = "Service account for cloud-connector"
+  display_name = "Service account for container"
 }
 
-module "cloud_connector" {
-  source = "../../modules/services/cloud-connector"
-  name   = "${var.name}-cloudconnector"
+module "container" {
+  source = "../../modules/services/container"
+  name   = "${var.name}-container"
+  
+  mode                          = var.mode
+  mgmt-console-url              = var.mgmt-console-url 
+  mgmt-console-port             = var.mgmt-console-port
+  deepfence-key                 = var.deepfence-key
 
-  deepfence_secure_endpoint  = "https://dev.deepfence.com"
-  deepfence_secure_api_token = "test"
-
-  project_id                 = data.google_client_config.current.project
-  cloud_connector_sa_email   = google_service_account.connector_sa.email
-  secure_api_token_secret_id = module.secure_secrets.secure_api_token_secret_name
+  project_id                    = data.google_client_config.current.project
+  container_sa_email            = google_service_account.container_sa.email
 
 }
 
-module "secure_secrets" {
-  source = "../../modules/infrastructure/secrets"
-  name   = "${var.name}-cloudconnector"
-
-  cloud_scanning_sa_email = google_service_account.connector_sa.email
-  deepfence_secure_api_token = "test"
-}
