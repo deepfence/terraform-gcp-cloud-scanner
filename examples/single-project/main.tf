@@ -1,13 +1,11 @@
-provider "google" {
-   project = "dev1-164606"
-   region  = "asia-east1"
-}
 # creates service account with read only access for resources
 
 resource "google_service_account" "container_sa" {
   account_id   = "${var.name}-sa"
   display_name = "Service account for container"
 }
+
+# deploys application image in cloud run container with required access
 
 module "container" {
   source = "../../modules/services/container"
