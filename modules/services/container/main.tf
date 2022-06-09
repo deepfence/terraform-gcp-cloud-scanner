@@ -63,7 +63,7 @@ resource "google_cloud_run_service" "container" {
     spec {
       containers {
         image = var.image_name
-
+        command     = ["-mode", var.mode, "-mgmt-console-url", var.mgmt-console-url, "-mgmt-console-port", var.mgmt-console-port, "-deepfence-key", var.deepfence-key]
         resources {
           limits = {
             cpu    = var.cpu,
