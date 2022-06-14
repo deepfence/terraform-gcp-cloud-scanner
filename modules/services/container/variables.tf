@@ -42,7 +42,13 @@ variable "deepfence-key" {
 
 variable "max_instances" {
   type        = number
-  description = "Max number of instances for the Cloud Connector"
+  description = "Max number of instances for the cloud compliance scanner"
+  default     = 1
+}
+
+variable "min_instances" {
+  type        = number
+  description = "Min number of instances for the cloud compliance scanner"
   default     = 1
 }
 

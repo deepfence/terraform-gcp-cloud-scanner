@@ -50,6 +50,7 @@ resource "google_cloud_run_service" "container" {
   metadata {
     annotations = {
       "run.googleapis.com/ingress" = "internal"
+      "run.googleapis.com/cpu-throttling" = "false"
     }
   }
 
@@ -57,6 +58,7 @@ resource "google_cloud_run_service" "container" {
     metadata {
       annotations = {
         "autoscaling.knative.dev/maxScale" = tostring(var.max_instances)
+        "autoscaling.knative.dev/minScale" = tostring(var.min_instances)
       }
     }
 
