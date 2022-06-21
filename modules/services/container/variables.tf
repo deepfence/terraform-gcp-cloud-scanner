@@ -70,6 +70,12 @@ variable "memory" {
   description = "Amount of memory to reserve for cloud-connector cloud run service"
 }
 
+variable "cloud_provider" {
+  type        = string
+  default     = "gcp"
+  description = "Cloud provider name"
+}
+
 
 
 

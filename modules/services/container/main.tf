@@ -6,20 +6,16 @@ locals {
     # Annotations can't be used or they can't be ignored in the lifecycle, thus triggering
     # recreations even if the config hasn't changed.
     {
-      name  = "mode"
-      value = var.mode
+      name  = "CLOUD_PROVIDER"
+      value = var.cloud_provider
     },
     {
-      name  = "mgmt-console-url"
-      value = var.mgmt-console-url
+      name  = "CLOUD_ACCOUNT_ID"
+      value = var.project_id
     },
     {
-      name  = "mgmt-console-port"
-      value = var.mgmt-console-port
-    },
-    {
-      name  = "deepfence-key"
-      value = var.deepfence-key
+      name  = "CLOUDSDK_CORE_PROJECT"
+      value = var.project_id
     },
     {
       name  = "GCP_REGION"
@@ -65,7 +61,7 @@ resource "google_cloud_run_service" "container" {
     spec {
       containers {
         image = var.image_name
-        command     = ["-mode", var.mode, "-mgmt-console-url", var.mgmt-console-url, "-mgmt-console-port", var.mgmt-console-port, "-deepfence-key", var.deepfence-key]
+        command = ["/usr/local/bin/cloud_compliance_scan", "-mode", var.mode, "-mgmt-console-url", var.mgmt-console-url, "-mgmt-console-port", var.mgmt-console-port, "-deepfence-key", var.deepfence-key]
         resources {
           limits = {
             cpu    = var.cpu,

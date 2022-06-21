@@ -34,7 +34,7 @@ module "cloud-compliance_example_single-project" {
   source              = "deepfence/cloud-compliance/gcp//examples/single-project"
   version             = "0.1.0"
   mode                = "<Mode type> eg. service"
-  mgmt-console-url    = "<Console URL> eg. 104.131.55.223"
+  mgmt-console-url    = "<Console URL> eg. XXX.XXX.XX.XXX"
   mgmt-console-port   = "<Console port> eg. 443"
   deepfence-key       = "<Deepfence-key> eg. XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
 }
