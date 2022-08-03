@@ -21,7 +21,6 @@ locals {
       name  = "GCP_REGION"
       value = data.google_client_config.current.region
     }
-
     ]
   )
 }
@@ -52,15 +51,15 @@ resource "google_cloud_run_service" "container" {
   template {
     metadata {
       annotations = {
-        "autoscaling.knative.dev/maxScale" = tostring(var.max_instances)
-        "autoscaling.knative.dev/minScale" = tostring(var.min_instances)
+        "autoscaling.knative.dev/maxScale"  = tostring(var.max_instances)
+        "autoscaling.knative.dev/minScale"  = tostring(var.min_instances)
         "run.googleapis.com/cpu-throttling" = "false"
       }
     }
 
     spec {
       containers {
-        image = var.image_name
+        image   = var.image_name
         command = ["/usr/local/bin/cloud_compliance_scan", "-mode", var.mode, "-mgmt-console-url", var.mgmt-console-url, "-mgmt-console-port", var.mgmt-console-port, "-deepfence-key", var.deepfence-key, "-http-server-required", "true"]
         resources {
           limits = {
@@ -68,14 +67,13 @@ resource "google_cloud_run_service" "container" {
             memory = var.memory,
           }
         }
-        
+
         ports {
           container_port = 8080
         }
 
         dynamic "env" {
           for_each = toset(local.task_env_vars)
-
           content {
             name  = env.value.name
             value = env.value.value
