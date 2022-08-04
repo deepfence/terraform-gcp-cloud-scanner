@@ -1,4 +1,4 @@
-# Cloud scanner for Google cloud by Deepfence
+# Cloud Scanner for Google Cloud by Deepfence
 
 This module deploys Cloud scanner for Google cloud by creating underlying resources in Google cloud platform.
 
