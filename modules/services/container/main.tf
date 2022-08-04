@@ -60,7 +60,7 @@ resource "google_cloud_run_service" "container" {
     spec {
       containers {
         image   = var.image_name
-        command = ["/usr/local/bin/cloud_compliance_scan", "-mode", var.mode, "-mgmt-console-url", var.mgmt-console-url, "-mgmt-console-port", var.mgmt-console-port, "-deepfence-key", var.deepfence-key, "-http-server-required", "true"]
+        command = ["/usr/local/bin/cloud_compliance_scan", "-mode", var.mode, "-mgmt-console-url", var.mgmt-console-url, "-mgmt-console-port", var.mgmt-console-port, "-deepfence-key", var.deepfence-key, "-http-server-required"]
         resources {
           limits = {
             cpu    = var.cpu,
@@ -100,6 +100,6 @@ resource "google_cloud_run_service_iam_member" "run_invoker" {
 resource "google_project_iam_member" "run_viewer" {
   project = var.project_id
   member  = "serviceAccount:${var.container_sa_email}"
-  role    = "roles/run.viewer"
+  role    = "roles/viewer"
 }
 

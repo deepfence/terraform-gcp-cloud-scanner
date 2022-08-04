@@ -1,5 +1,9 @@
-# creates service account with read only access for resources
+provider "google" {
+  project = var.project
+  region  = var.region
+}
 
+# creates service account with read only access for resources
 resource "google_service_account" "container_sa" {
   account_id   = "${var.name}-sa"
   display_name = "Service account for container"
@@ -16,6 +20,7 @@ module "container" {
   deepfence-key      = var.deepfence-key
   project_id         = data.google_client_config.current.project
   container_sa_email = google_service_account.container_sa.email
+  cpu                = 2
 }
 
 
