@@ -1,6 +1,6 @@
-# Cloud compliance scanner for Google cloud by Deepfence
+# Cloud scanner for Google cloud by Deepfence
 
-This module deploys Cloud compliance scanner for Google cloud by creating underlying resources in Google cloud platform.
+This module deploys Cloud scanner for Google cloud by creating underlying resources in Google cloud platform.
 
 ### Notice
 **Deployment cost** - This example will create resources that cost money.<br/>Run `terraform destroy` when you don't need them anymore
