@@ -23,7 +23,7 @@ This module deploys Cloud scanner for Google cloud by creating underlying resour
 Deepfence workload will be deployed in the same account where user's resources will be watched.
 
 Please check out below to implement the same-
-[`./examples/single-project`](https://github.com/deepfence/terraform-gcp-cloud-connector/tree/delivery-1/main/single-project)
+[`./examples/single-project`](examples/single-project)
 
 ## Authors
 
