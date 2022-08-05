@@ -1,6 +1,6 @@
 # Cloud Scanner for Google Cloud by Deepfence
 
-This module deploys Cloud scanner for Google cloud by creating underlying resources in Google cloud platform.
+This module deploys Cloud Scanner for Google Cloud by creating underlying resources in Google Cloud platform.
 
 ### Notice
 **Deployment cost** - This example will create resources that cost money.<br/>Run `terraform destroy` when you don't need them anymore
@@ -8,9 +8,9 @@ This module deploys Cloud scanner for Google cloud by creating underlying resour
 ## Prerequisites
 
 1. Configure [Terraform **GCP** Provider](https://registry.terraform.io/providers/hashicorp/google/latest/docs)
-1. Following **roles** are required in your GCP organization/project credentials
+2. Following **roles** are required in your GCP organization/project credentials
    * _Owner_
-1. Besides, the following GCP **APIs must be enabled** to deploy resources correctly:
+3. Besides, the following GCP **APIs must be enabled** to deploy resources correctly:
 
 * [Identity and access management API](https://console.cloud.google.com/marketplace/product/google/iam.googleapis.com)
 * [Cloud Run API](https://console.cloud.google.com/marketplace/product/google/run.googleapis.com)

@@ -1,4 +1,4 @@
-# Cloud scanner
+# Cloud Scanner
 This module deploys the cloud scanner in cloud run container with read only access to cloud resources. It also creates the invoker access to invoke the container.
 
 ## Requirements

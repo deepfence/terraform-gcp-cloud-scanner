@@ -1,6 +1,6 @@
-# Cloud scanner in Google cloud<br/>[ Example :: Single-Account ] 
+# Cloud Scanner in Google Cloud<br/>[ Example :: Single-Account ] 
 
-Deploy Cloud scanner for Google cloud in a single project.<br/>
+Deploy Cloud Scanner for Google Cloud in a single project.<br/>
 
 ### Notice
 **Deployment cost** - This example will create resources that cost money.<br/>Run `terraform destroy` when you don't need them anymore
@@ -8,9 +8,9 @@ Deploy Cloud scanner for Google cloud in a single project.<br/>
 ## Prerequisites
 
 1. Configure [Terraform **GCP** Provider](https://registry.terraform.io/providers/hashicorp/google/latest/docs)
-1. Following **roles** are required in your GCP organization/project credentials
+2. Following **roles** are required in your GCP organization/project credentials
    * _Owner_
-1. Besides, the following GCP **APIs must be enabled** to deploy resources correctly:
+3. Besides, the following GCP **APIs must be enabled** to deploy resources correctly:
 
 * [Identity and access management API](https://console.cloud.google.com/marketplace/product/google/iam.googleapis.com)
 * [Cloud Run API](https://console.cloud.google.com/marketplace/product/google/run.googleapis.com)
