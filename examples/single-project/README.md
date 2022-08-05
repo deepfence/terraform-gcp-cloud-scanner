@@ -33,9 +33,8 @@ provider "google-beta" {
 module "cloud-scanner_example_single-project" {
   source              = "deepfence/cloud-scanner/gcp//examples/single-project"
   version             = "0.1.0"
-  mode                = "<Mode type> eg. service"
   mgmt-console-url    = "<Console URL> eg. XXX.XXX.XX.XXX"
-  mgmt-console-port   = "<Console port> eg. 443"
+  mgmt-console-port   = "443"
   deepfence-key       = "<Deepfence-key> eg. XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
 }
 ```

@@ -23,6 +23,7 @@ variable "container_sa_email" {
 variable "mode" {
   type        = string
   description = "mode"
+  default     = "service"
 }
 
 variable "mgmt-console-url" {
