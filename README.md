@@ -1,6 +1,6 @@
-# Cloud compliance scanner for Google cloud by Deepfence
+# Cloud Scanner for Google Cloud by Deepfence
 
-This module deploys Cloud compliance scanner for Google cloud by creating underlying resources in Google cloud platform.
+This module deploys Cloud Scanner for Google Cloud by creating underlying resources in Google Cloud platform.
 
 ### Notice
 **Deployment cost** - This example will create resources that cost money.<br/>Run `terraform destroy` when you don't need them anymore
@@ -8,7 +8,7 @@ This module deploys Cloud compliance scanner for Google cloud by creating underl
 ## Prerequisites
 
 1. Configure [Terraform **GCP** Provider](https://registry.terraform.io/providers/hashicorp/google/latest/docs)
-1. Following **roles** are required in your GCP organization/project credentials
+2. Following **roles** are required in your GCP organization/project credentials
    * _Owner_
    * _Organization Admin_ (organizational usage only)
 

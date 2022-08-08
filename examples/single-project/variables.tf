@@ -3,7 +3,7 @@
 variable "name" {
   type        = string
   description = "Name to be assigned to all child resources. A suffix may be added internally when required. Use default value unless you need to install multiple instances"
-  default     = "cloud-compliance-scanner"
+  default     = "deepfence-cloud-scanner"
 }
 
 # container variables
@@ -11,7 +11,7 @@ variable "name" {
 variable "mode" {
   type        = string
   description = "mode"
-  default     = ""
+  default     = "service"
 }
 
 variable "mgmt-console-url" {
@@ -23,7 +23,7 @@ variable "mgmt-console-url" {
 variable "mgmt-console-port" {
   type        = string
   description = "mgmt-console-port"
-  default     = ""
+  default     = "443"
 }
 
 variable "deepfence-key" {
@@ -32,3 +32,10 @@ variable "deepfence-key" {
   default     = ""
 }
 
+variable "project" {
+  type = string
+}
+
+variable "region" {
+  type = string
+}

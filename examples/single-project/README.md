@@ -1,6 +1,6 @@
-# Cloud compliance scanner in Google cloud<br/>[ Example :: Single-Account ] 
+# Cloud Scanner in Google Cloud<br/>[ Example :: Single-Account ] 
 
-Deploy Cloud compliance scanner for Google cloud in a single project.<br/>
+Deploy Cloud Scanner for Google Cloud in a single project.<br/>
 
 ### Notice
 **Deployment cost** - This example will create resources that cost money.<br/>Run `terraform destroy` when you don't need them anymore
@@ -8,9 +8,9 @@ Deploy Cloud compliance scanner for Google cloud in a single project.<br/>
 ## Prerequisites
 
 1. Configure [Terraform **GCP** Provider](https://registry.terraform.io/providers/hashicorp/google/latest/docs)
-1. Following **roles** are required in your GCP organization/project credentials
+2. Following **roles** are required in your GCP organization/project credentials
    * _Owner_
-1. Besides, the following GCP **APIs must be enabled** to deploy resources correctly:
+3. Besides, the following GCP **APIs must be enabled** to deploy resources correctly:
 
 * [Identity and access management API](https://console.cloud.google.com/marketplace/product/google/iam.googleapis.com)
 * [Cloud Run API](https://console.cloud.google.com/marketplace/product/google/run.googleapis.com)
@@ -30,12 +30,11 @@ provider "google-beta" {
    region  = "<REGION_ID>; ex. asia-east1"
 }
 
-module "cloud-compliance_example_single-project" {
-  source              = "deepfence/cloud-compliance/gcp//examples/single-project"
+module "cloud-scanner_example_single-project" {
+  source              = "deepfence/cloud-scanner/gcp//examples/single-project"
   version             = "0.1.0"
-  mode                = "<Mode type> eg. service"
-  mgmt-console-url    = "<Console URL> eg. 104.131.55.223"
-  mgmt-console-port   = "<Console port> eg. 443"
+  mgmt-console-url    = "<Console URL> eg. XXX.XXX.XX.XXX"
+  mgmt-console-port   = "443"
   deepfence-key       = "<Deepfence-key> eg. XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
 }
 ```
@@ -52,7 +51,7 @@ module "cloud-compliance_example_single-project" {
 
 | Name | Version |
 |------|---------|
-| <a name="provider_google"></a> [google](#provider\_google) | 4.21.0 |
+| <a name="provider_google"></a> [google](#provider\_google) | ~> 4.21.0 |
 
 ## Modules
 
@@ -72,10 +71,10 @@ module "cloud-compliance_example_single-project" {
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_deepfence-key"></a> [deepfence-key](#input\_deepfence-key) | deepfence-key | `string` | `""` | no |
-| <a name="input_mgmt-console-port"></a> [mgmt-console-port](#input\_mgmt-console-port) | mgmt-console-port | `string` | `""` | no |
+| <a name="input_mgmt-console-port"></a> [mgmt-console-port](#input\_mgmt-console-port) | mgmt-console-port | `string` | `"443"` | no |
 | <a name="input_mgmt-console-url"></a> [mgmt-console-url](#input\_mgmt-console-url) | mgmt-console-url | `string` | `""` | no |
-| <a name="input_mode"></a> [mode](#input\_mode) | mode | `string` | `""` | no |
-| <a name="input_name"></a> [name](#input\_name) | Name to be assigned to all child resources. A suffix may be added internally when required. Use default value unless you need to install multiple instances | `string` | `"cloud-compliance-scanner"` | no |
+| <a name="input_mode"></a> [mode](#input\_mode) | mode | `string` | `"service"` | no |
+| <a name="input_name"></a> [name](#input\_name) | Name to be assigned to all child resources. A suffix may be added internally when required. Use default value unless you need to install multiple instances | `string` | `"deepfence-cloud-scanner"` | no |
 
 ## Outputs
 

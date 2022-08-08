@@ -1,5 +1,5 @@
-# Cloud compliance scanner
-This module deploys the cloud compliance scanner in cloud run container with read only access to cloud resources. It also creates the invoker access to invoke the container.
+# Cloud Scanner
+This module deploys the cloud scanner in cloud run container with read only access to cloud resources. It also creates the invoker access to invoke the container.
 
 ## Requirements
 
@@ -33,18 +33,21 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_cloud_provider"></a> [cloud\_provider](#input\_cloud\_provider) | Cloud provider name | `string` | `"gcp"` | no |
 | <a name="input_container_sa_email"></a> [container\_sa\_email](#input\_container\_sa\_email) | Container service account email | `string` | n/a | yes |
-| <a name="input_cpu"></a> [cpu](#input\_cpu) | Amount of CPU to reserve for cloud-connector cloud run service | `string` | `"1"` | no |
+| <a name="input_cpu"></a> [cpu](#input\_cpu) | Amount of CPU to reserve for cloud-scanner cloud run service | `string` | `"1"` | no |
 | <a name="input_deepfence-key"></a> [deepfence-key](#input\_deepfence-key) | deepfence-key | `string` | n/a | yes |
-| <a name="input_image_name"></a> [image\_name](#input\_image\_name) | Deepfence cloud compliance scanner image. GCP only allows the deployment of images that are registered in gcr.io | `string` | `"us-docker.pkg.dev/cloudrun/container/hello"` | no |
-| <a name="input_max_instances"></a> [max\_instances](#input\_max\_instances) | Max number of instances for the Cloud Connector | `number` | `1` | no |
-| <a name="input_memory"></a> [memory](#input\_memory) | Amount of memory to reserve for cloud-connector cloud run service | `string` | `"2048Mi"` | no |
+| <a name="input_image_name"></a> [image\_name](#input\_image\_name) | Deepfence cloud scanner image. GCP only allows the deployment of images that are registered in gcr.io | `string` | `"us-east1-docker.pkg.dev/deepfenceio/deepfence/cloud-scanner:latest"` | no |
+| <a name="input_max_instances"></a> [max\_instances](#input\_max\_instances) | Max number of instances for the cloud scanner | `number` | `1` | no |
+| <a name="input_memory"></a> [memory](#input\_memory) | Amount of memory to reserve for cloud-scanner cloud run service | `string` | `"2048Mi"` | no |
 | <a name="input_mgmt-console-port"></a> [mgmt-console-port](#input\_mgmt-console-port) | mgmt-console-port | `string` | n/a | yes |
 | <a name="input_mgmt-console-url"></a> [mgmt-console-url](#input\_mgmt-console-url) | mgmt-console-url | `string` | n/a | yes |
+| <a name="input_min_instances"></a> [min\_instances](#input\_min\_instances) | Min number of instances for the cloud scanner | `number` | `1` | no |
 | <a name="input_mode"></a> [mode](#input\_mode) | mode | `string` | n/a | yes |
-| <a name="input_name"></a> [name](#input\_name) | Name to be assigned to all child resources. A suffix may be added internally when required. Use default value unless you need to install multiple instances | `string` | `"cloud-compliance-scanner-cloudconnector"` | no |
+| <a name="input_name"></a> [name](#input\_name) | Name to be assigned to all child resources. A suffix may be added internally when required. Use default value unless you need to install multiple instances | `string` | `"deepfence-cloud-scanner"` | no |
 | <a name="input_project_id"></a> [project\_id](#input\_project\_id) | organizational member project ID where the workload is going to be deployed | `string` | n/a | yes |
 
 ## Outputs
 
 No outputs.
+

@@ -8,7 +8,7 @@ variable "project_id" {
 variable "name" {
   type        = string
   description = "Name to be assigned to all child resources. A suffix may be added internally when required. Use default value unless you need to install multiple instances"
-  default     = "cloud-compliance-scanner-cloudconnector"
+  default     = "deepfence-cloud-scanner"
 }
 
 # IAM
@@ -23,6 +23,7 @@ variable "container_sa_email" {
 variable "mode" {
   type        = string
   description = "mode"
+  default     = "service"
 }
 
 variable "mgmt-console-url" {
@@ -42,32 +43,38 @@ variable "deepfence-key" {
 
 variable "max_instances" {
   type        = number
-  description = "Max number of instances for the cloud compliance scanner"
+  description = "Max number of instances for the cloud scanner"
   default     = 1
 }
 
 variable "min_instances" {
   type        = number
-  description = "Min number of instances for the cloud compliance scanner"
+  description = "Min number of instances for the cloud scanner"
   default     = 1
 }
 
 variable "image_name" {
   type        = string
-  default     = "us-docker.pkg.dev/cloudrun/container/hello"
-  description = "Deepfence cloud compliance scanner image. GCP only allows the deployment of images that are registered in gcr.io"
+  default     = "us-east1-docker.pkg.dev/deepfenceio/deepfence/cloud-scanner:latest"
+  description = "Deepfence cloud scanner image. GCP only allows the deployment of images that are registered in gcr.io"
 }
 
 variable "cpu" {
   type        = string
   default     = "1"
-  description = "Amount of CPU to reserve for cloud-connector cloud run service"
+  description = "Amount of CPU to reserve for cloud-scanner cloud run service"
 }
 
 variable "memory" {
   type        = string
   default     = "2048Mi"
-  description = "Amount of memory to reserve for cloud-connector cloud run service"
+  description = "Amount of memory to reserve for cloud-scanner cloud run service"
+}
+
+variable "cloud_provider" {
+  type        = string
+  default     = "gcp"
+  description = "Cloud provider name"
 }
 
 
