@@ -9,6 +9,7 @@ variable "name" {
 variable "organization_domain" {
   type        = string
   description = "Organization domain. ex. deepfence.com"
+  default     = "Deepfenceio"
 }
 
 # container variables

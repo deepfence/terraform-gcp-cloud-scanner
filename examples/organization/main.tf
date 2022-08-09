@@ -17,7 +17,7 @@ resource "google_organization_iam_member" "organization_image_puller" {
   org_id = data.google_organization.org.org_id
 
   role   = "roles/run.viewer"
-  member = "serviceAccount:${google_service_account.connector_sa.email}"
+  member = "serviceAccount:${google_service_account.container_sa.email}"  
 }
 
 # deploys application image in cloud run container with required access

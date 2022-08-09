@@ -38,7 +38,22 @@ provider "google-beta" {
    region  = "<REGION_ID>; ex. asia-east1"
 }
 
+# This two "multiproject" providers are required for benchmark trust-identity activation on the organizational level
+provider "google" {
+   alias  = "multiproject"
+   region = "<REGION_ID>; ex. asia-east1"
+}
+
+provider "google-beta" {
+   alias  = "multiproject"
+   region = "<REGION_ID>; ex. asia-east1"
+}
+
 module "cloud-compliance_example_organization" {
+  providers = {
+    google.multiproject      = google.multiproject
+    google-beta.multiproject = google-beta.multiproject
+  }
   source              = "deepfence/cloud-compliance/gcp//examples/organization"
   version             = "0.1.0"
   mode                = "<Mode type> eg. service"
