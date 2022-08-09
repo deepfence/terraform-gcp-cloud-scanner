@@ -100,6 +100,7 @@ resource "google_cloud_run_service_iam_member" "run_invoker" {
 resource "google_project_iam_member" "run_viewer" {
   project = var.project_id
   member  = "serviceAccount:${var.container_sa_email}"
-  role    = "roles/viewer"
+  # role    = "roles/viewer"
+  role = "roles/iam.securityReviewer"
 }
 
