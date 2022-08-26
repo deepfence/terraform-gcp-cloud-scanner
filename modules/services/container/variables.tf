@@ -77,6 +77,17 @@ variable "cloud_provider" {
   description = "Cloud provider name"
 }
 
+variable "multiple-acc-ids" {
+  type        = string
+  description = "Project IDs"
+}
+
+variable "org-acc-id" {
+  type        = string
+  default     = ""
+  description = "Org ID"
+}
+
 
 
 

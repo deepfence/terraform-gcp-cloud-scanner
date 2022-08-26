@@ -1,30 +1,3 @@
-# defining container env variables
-
-locals {
-  task_env_vars = concat([
-    # This allows the revision to be created again if the configuration changes.
-    # Annotations can't be used or they can't be ignored in the lifecycle, thus triggering
-    # recreations even if the config hasn't changed.
-    {
-      name  = "CLOUD_PROVIDER"
-      value = var.cloud_provider
-    },
-    {
-      name  = "CLOUD_ACCOUNT_ID"
-      value = var.project_id
-    },
-    {
-      name  = "CLOUDSDK_CORE_PROJECT"
-      value = var.project_id
-    },
-    {
-      name  = "GCP_REGION"
-      value = data.google_client_config.current.region
-    }
-    ]
-  )
-}
-
 # deploys application image in cloud run container
 
 resource "google_cloud_run_service" "container" {
@@ -60,7 +33,7 @@ resource "google_cloud_run_service" "container" {
     spec {
       containers {
         image   = var.image_name
-        command = ["/usr/local/bin/cloud_compliance_scan", "-mode", var.mode, "-mgmt-console-url", var.mgmt-console-url, "-mgmt-console-port", var.mgmt-console-port, "-deepfence-key", var.deepfence-key, "-http-server-required"]
+        command = ["/usr/local/bin/cloud_compliance_scan", "-mode", var.mode, "-mgmt-console-url", var.mgmt-console-url, "-mgmt-console-port", var.mgmt-console-port, "-deepfence-key", var.deepfence-key, "-cloud_provider", var.cloud_provider, "-multiple-acc-ids", var.multiple-acc-ids, "-org-acc-id", "var.org-acc-id", "-http-server-required"]
         resources {
           limits = {
             cpu    = var.cpu,
@@ -72,13 +45,6 @@ resource "google_cloud_run_service" "container" {
           container_port = 8080
         }
 
-        dynamic "env" {
-          for_each = toset(local.task_env_vars)
-          content {
-            name  = env.value.name
-            value = env.value.value
-          }
-        }
       }
       service_account_name = var.container_sa_email
     }

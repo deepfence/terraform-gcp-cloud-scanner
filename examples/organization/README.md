@@ -25,6 +25,7 @@ For quick testing, use following snippet on your terraform files and provide fol
 - `ORG_DOMAIN` GCP organization identification
 - `PROJECT_ID` GCP project where workload will be deployed
 - `REGION_ID` for the workload to be deployed
+- `multiple-acc-ids` list of projects where scanning will be done.
 
 ```terraform
 
@@ -61,6 +62,7 @@ module "cloud-compliance_example_organization" {
   mgmt-console-port   = "<Console port> eg. 443"
   deepfence-key       = "<Deepfence-key> eg. XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
   organization_domain = "<ORG_DOMAIN>"
+  multiple-acc-ids    = "<Project IDs where scanning will be done> eg. dev, test"
 }
 ```
 ## Requirements

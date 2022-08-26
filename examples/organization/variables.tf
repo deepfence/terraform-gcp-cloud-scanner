@@ -9,7 +9,7 @@ variable "name" {
 variable "organization_domain" {
   type        = string
   description = "Organization domain. ex. deepfence.com"
-  default     = "Deepfenceio"
+  default     = ""
 }
 
 # container variables
@@ -35,6 +35,12 @@ variable "mgmt-console-port" {
 variable "deepfence-key" {
   type        = string
   description = "deepfence-key"
+  default     = ""
+}
+
+variable "multiple-acc-ids" {
+  type        = string
+  description = "These account ids are those where scanning will be done"
   default     = ""
 }
 
