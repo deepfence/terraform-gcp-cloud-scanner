@@ -1,5 +1,3 @@
-# defining container env variables
-
 locals {
   task_env_vars = concat([
     # This allows the revision to be created again if the configuration changes.
@@ -60,7 +58,7 @@ resource "google_cloud_run_service" "container" {
     spec {
       containers {
         image   = var.image_name
-        command = ["/usr/local/bin/cloud_compliance_scan", "-mode", var.mode, "-mgmt-console-url", var.mgmt-console-url, "-mgmt-console-port", var.mgmt-console-port, "-deepfence-key", var.deepfence-key, "-http-server-required"]
+        command = ["/usr/local/bin/cloud_compliance_scan", "-mode", var.mode, "-mgmt-console-url", var.mgmt-console-url, "-mgmt-console-port", var.mgmt-console-port, "-deepfence-key", var.deepfence-key, "-multiple-acc-ids", var.multiple-acc-ids, "-org-acc-id", "var.org-acc-id", "-http-server-required"]
         resources {
           limits = {
             cpu    = var.cpu,

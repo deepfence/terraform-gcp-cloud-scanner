@@ -10,7 +10,9 @@ This module deploys Cloud Scanner for Google Cloud by creating underlying resour
 1. Configure [Terraform **GCP** Provider](https://registry.terraform.io/providers/hashicorp/google/latest/docs)
 2. Following **roles** are required in your GCP organization/project credentials
    * _Owner_
-3. Besides, the following GCP **APIs must be enabled** to deploy resources correctly:
+   * _Organization Admin_ (organizational usage only)
+
+1. Besides, the following GCP **APIs must be enabled** to deploy resources correctly:
 
 * [Identity and access management API](https://console.cloud.google.com/marketplace/product/google/iam.googleapis.com)
 * [Cloud Run API](https://console.cloud.google.com/marketplace/product/google/run.googleapis.com)
@@ -23,7 +25,14 @@ This module deploys Cloud Scanner for Google Cloud by creating underlying resour
 Deepfence workload will be deployed in the same account where user's resources will be watched.
 
 Please check out below to implement the same-
-[`./examples/single-project`](https://github.com/deepfence/terraform-gcp-cloud-scanner/tree/main/examples/single-project)
+[`./examples/single-project`](https://github.com/deepfence/terraform-gcp-cloud-compliance/tree/main/examples/single-project)
+
+### - Organization
+
+Deepfence workload will be deployed in an organization setup to scan all projects under an organization.
+
+Please check out below to implement the same-
+[`./examples/organization`](https://github.com/deepfence/terraform-gcp-cloud-compliance/tree/main/examples/organization)
 
 ## Authors
 
