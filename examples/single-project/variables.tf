@@ -32,6 +32,12 @@ variable "deepfence-key" {
   default     = ""
 }
 
+variable "image_name" {
+  type        = string
+  description = "Cloud Scanner docker image"
+  default     = "us-east1-docker.pkg.dev/deepfenceio/deepfence/cloud-scanner:latest"
+}
+
 # variable "project" {
 #   type = string
 # }
