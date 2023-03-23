@@ -1,4 +1,4 @@
-# Cloud Scanner in Google Cloud<br/>[ Example :: Single-Account ] 
+# Cloud Scanner in Google Cloud<br/>[ Example :: Single-Account ]
 
 Deploy Cloud Scanner for Google Cloud in a single project.<br/>
 
@@ -36,9 +36,15 @@ module "cloud-scanner_example_single-project" {
   mgmt-console-url    = "<Console URL> eg. XXX.XXX.XX.XXX"
   mgmt-console-port   = "443"
   deepfence-key       = "<Deepfence-key> eg. XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
-  image_name          = "us-east1-docker.pkg.dev/deepfenceio/deepfence/cloud-scanner:latest"
+  name                = "deepfence-cloud-scanner"
 }
 ```
+
+And in a separate .tfvars file, copy paste the following:
+```terraform
+image = "us-east1-docker.pkg.dev/deepfenceio/deepfence/cloud-scanner:latest"
+```
+
 
 ## Requirements
 
