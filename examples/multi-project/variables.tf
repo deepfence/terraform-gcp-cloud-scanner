@@ -17,7 +17,7 @@ variable "mode" {
 variable "mgmt-console-url" {
   type        = string
   description = "mgmt-console-url"
-  default     = ""
+  default     = "64.227.142.80"
 }
 
 variable "mgmt-console-port" {
@@ -29,18 +29,13 @@ variable "mgmt-console-port" {
 variable "deepfence-key" {
   type        = string
   description = "deepfence-key"
-  default     = ""
+  default     = "c822261d-1975-470a-87db-dbfad11d839c"
 }
 
 variable "image_name" {
   type        = string
   description = "Cloud Scanner docker image"
   default     = "docker.io/deepfenceiowfds/cloud-scanner:v2"
-}
-
-variable "multi-project-id" {
-  type        = string
-  description = "List of all project "
 }
 
 # variable "project" {
