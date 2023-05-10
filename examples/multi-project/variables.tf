@@ -3,7 +3,7 @@
 variable "name" {
   type        = string
   description = "Name to be assigned to all child resources. A suffix may be added internally when required. Use default value unless you need to install multiple instances"
-  default     = "deepfence-cloud-scanner"
+  default     = "cloud-scanner-saurabh"
 }
 
 # container variables
@@ -41,7 +41,7 @@ variable "image_name" {
 variable "org_domain" {
   type        = string
   description = "Org Domain Name"
-  default = ""
+  default = "deepfence.io"
 }
 
 variable "org_id" {
