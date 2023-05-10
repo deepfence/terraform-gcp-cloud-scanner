@@ -1,8 +1,7 @@
 # importing google cloud current config
 
 data "google_organization" "org_by_domain" {
-  count = var.org_domain != "" ? 0 : 1
-  domain = try(var.org_domain, null)
+  domain = var.org_domain
 }
 
 data "google_client_config" "current" {}
