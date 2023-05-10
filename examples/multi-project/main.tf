@@ -22,5 +22,5 @@ module "container" {
   container_sa_email = google_service_account.container_sa.email
   cpu                = 2
   multi-project-ids = [for project in data.google_projects.all_projects : project.id]
-  org-acc-id        = data.google_organization.org.id
+  org-acc-id        = data.google_organization.org_by_domain.id
 }
