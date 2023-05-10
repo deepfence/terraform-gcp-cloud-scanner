@@ -3,6 +3,7 @@
 variable "project_id" {
   type        = string
   description = "organizational member project ID where the workload is going to be deployed"
+  default     = "astute-house-189713"
 }
 
 variable "name" {

@@ -7,9 +7,9 @@ data "google_organization" "org_by_domain" {
 data "google_client_config" "current" {}
 
 data "google_projects" "all_projects" {
-  filter = "parent.id:${data.google_organization.org_by_domain.id}"
+  filter = "name:*"
 }
 
 output "current_project" {
-  value = data.google_client_config.current.project
+  value = var.project_id
 }

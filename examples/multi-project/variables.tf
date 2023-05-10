@@ -17,7 +17,7 @@ variable "mode" {
 variable "mgmt-console-url" {
   type        = string
   description = "mgmt-console-url"
-  default     = ""
+  default     = "142.93.216.241"
 }
 
 variable "mgmt-console-port" {
@@ -29,13 +29,13 @@ variable "mgmt-console-port" {
 variable "deepfence-key" {
   type        = string
   description = "deepfence-key"
-  default     = ""
+  default     = "d024c380-bc9d-4153-89f7-30f587950d09"
 }
 
 variable "image_name" {
   type        = string
   description = "Cloud Scanner docker image"
-  default     = "docker.io/deepfenceiowfds/cloud-scanner:v2"
+  default     = "docker.io/deepfenceio/cloud-scanner:v2"
 }
 
 variable "org_domain" {
@@ -50,6 +50,11 @@ variable "org_id" {
   default = ""
 }
 
+variable "project_id" {
+  type        = string
+  description = "organizational member project ID where the workload is going to be deployed"
+  default = "astute-house-189713"
+}
 # variable "project" {
 #   type = string
 # }

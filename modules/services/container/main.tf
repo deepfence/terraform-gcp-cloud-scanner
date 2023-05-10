@@ -28,9 +28,9 @@ locals {
 # deploys application image in cloud run container
 
 resource "google_cloud_run_service" "container" {
-  location = data.google_client_config.current.region
+  location = "us-central1"
   name     = var.name
-
+  project = var.project_id
   lifecycle {
     # We ignore changes in some annotations Cloud Run adds to the resource so we can
     # avoid unwanted recreations.
