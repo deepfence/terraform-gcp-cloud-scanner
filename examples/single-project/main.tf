@@ -20,5 +20,7 @@ module "container" {
   image_name         = var.image_name
   project_id         = data.google_client_config.current.project
   container_sa_email = google_service_account.container_sa.email
-  cpu                = 2
+  cpu               = 2
+  multi-project-ids = ""
+  org-acc-id        = ""
 }

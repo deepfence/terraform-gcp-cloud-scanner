@@ -7,6 +7,7 @@
 resource "google_service_account" "container_sa" {
   account_id   = "${var.name}-sa"
   display_name = "Service account for container"
+  project = data.google_client_config.current.project
 }
 
 # deploys application image in cloud run container with required access
