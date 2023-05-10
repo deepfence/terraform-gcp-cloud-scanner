@@ -21,6 +21,6 @@ module "container" {
   project_id         = data.google_client_config.current.project
   container_sa_email = google_service_account.container_sa.email
   cpu                = 2
-  multi-project-ids = [for project in data.google_projects.all_projects : project.id]
+  multi-project-ids = join(",", data.google_projects.all_projects.projects.*.project_id)
   org-acc-id        = data.google_organization.org_by_domain.id
 }
