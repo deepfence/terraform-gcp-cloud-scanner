@@ -98,7 +98,7 @@ resource "google_cloud_run_service_iam_member" "run_invoker" {
 # assigns read only resource access on cloud
 
 resource "google_project_iam_member" "project_iam_member" {
-  for_each = data.google_projects.projects.projects.*.project_id
+  for_each = toset(data.google_projects.projects.projects.*.project_id)
 
   project = each.value
   role    = "roles/editor"
