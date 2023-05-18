@@ -28,7 +28,8 @@ locals {
 # deploys application image in cloud run container
 
 resource "google_cloud_run_service" "container" {
-  location = data.google_client_config.current.region
+  location = var.location
+  project = var.project_id
   name     = var.name
 
   lifecycle {

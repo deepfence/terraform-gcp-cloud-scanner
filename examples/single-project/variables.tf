@@ -38,10 +38,10 @@ variable "image_name" {
   default     = "us-east1-docker.pkg.dev/deepfenceio/deepfence/cloud-scanner:latest"
 }
 
-# variable "project" {
-#   type = string
-# }
+variable "project_id" {
+  type = string
+}
 
-# variable "region" {
-#   type = string
-# }
+variable "region" {
+  type = string
+}

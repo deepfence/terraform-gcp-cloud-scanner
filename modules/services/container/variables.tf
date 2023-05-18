@@ -77,6 +77,12 @@ variable "cloud_provider" {
   description = "Cloud provider name"
 }
 
+variable "location" {
+  type = string
+  default = "us-central1"
+  description = "The region in which cloud run service would be deployed"
+}
+
 
 
 
