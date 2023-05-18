@@ -18,7 +18,8 @@ module "container" {
   mgmt-console-port  = var.mgmt-console-port
   deepfence-key      = var.deepfence-key
   image_name         = var.image_name
-  project_id         = data.google_client_config.current.project
+  project_id         = var.project_id
+  location           = var.region
   container_sa_email = google_service_account.container_sa.email
   cpu                = 2
 }
