@@ -20,23 +20,15 @@ Copy the code below and paste it into a .tf file on your local machine.
 
 ```terraform
 
-provider "google" {
-   project = "<PROJECT_ID>; ex. dev1-123456"
-   region  = "<REGION_ID>; ex. asia-east1"
-}
-
-provider "google-beta" {
-   project = "<PROJECT_ID> ex. dev1-123456"
-   region  = "<REGION_ID>; ex. asia-east1"
-}
-
 module "cloud-scanner_example_single-project" {
   source              = "deepfence/cloud-scanner/gcp//examples/single-project"
   version             = "0.1.0"
   mgmt-console-url    = "<Console URL> eg. XXX.XXX.XX.XXX"
   mgmt-console-port   = "443"
   deepfence-key       = "<Deepfence-key> eg. XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
-  image_name          = "us-east1-docker.pkg.dev/deepfenceio/deepfence/cloud-scanner:latest"
+  image_name          = "quay.io/deepfenceio/cloud-scanner:1.5.0"
+  project_id          = "<PROJECT_ID>; ex. dev1-123456"
+  region              = "<REGION_ID>; ex. asia-east1"
 }
 ```
 
