@@ -27,14 +27,14 @@ locals {
 
 # VPC access to private ip
 resource "google_vpc_access_connector" "accessors" {
-  count = var.vpc ? 1 : 0
+  count = var.vpc != "" ? 1 : 0
   name    = var.name
   region = var.location
   project = var.project_id
   network = var.vpc
   ip_cidr_range = var.ip_cidr_range_svpca
-  min_instances = 1
-  max_instances = 1
+  min_throughput = 200
+  max_throughput = 300
 }
 
 # deploys application image in cloud run container
@@ -67,7 +67,7 @@ resource "google_cloud_run_service" "container" {
         "autoscaling.knative.dev/maxScale"  = tostring(var.max_instances)
         "autoscaling.knative.dev/minScale"  = tostring(var.min_instances)
         "run.googleapis.com/cpu-throttling" = "false"
-        "run.googleapis.com/vpc-access-connector" = var.vpc?google_vpc_access_connector.accessors[0].name : ""
+        "run.googleapis.com/vpc-access-connector" = var.vpc != ""?google_vpc_access_connector.accessors[0].name : ""
         "run.googleapis.com/vpc-access-egress" = "all-traffic"
       }
     }
