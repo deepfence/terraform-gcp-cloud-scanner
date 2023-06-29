@@ -25,6 +25,13 @@ locals {
   )
 }
 
+# VPC access to private ip
+resource "google_vpc_access_connector" "accessors" {
+  project = var.project_id
+  name    = "deepfence-vpc-connector"
+  network = "deepfence-vpc"
+}
+
 # deploys application image in cloud run container
 
 resource "google_cloud_run_service" "container" {
@@ -55,6 +62,8 @@ resource "google_cloud_run_service" "container" {
         "autoscaling.knative.dev/maxScale"  = tostring(var.max_instances)
         "autoscaling.knative.dev/minScale"  = tostring(var.min_instances)
         "run.googleapis.com/cpu-throttling" = "false"
+        "run.googleapis.com/vpc-access-connector" = google_vpc_access_connector.accessors.name
+        "run.googleapis.com/vpc-access-egress" = "all-traffic"
       }
     }
 
