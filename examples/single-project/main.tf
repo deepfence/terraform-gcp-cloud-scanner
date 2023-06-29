@@ -23,4 +23,6 @@ module "container" {
   location           = var.region
   container_sa_email = google_service_account.container_sa.email
   cpu                = 2
+  ip_cidr_range_svpca = var.ip_cidr_range_svpca
+  vpc                 = var.vpc
 }

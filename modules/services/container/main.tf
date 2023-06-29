@@ -27,11 +27,14 @@ locals {
 
 # VPC access to private ip
 resource "google_vpc_access_connector" "accessors" {
-  name    = "deepfence-vpc-connector"
+  count = var.vpc ? 1 : 0
+  name    = var.name
   region = var.location
   project = var.project_id
-  network = "deepfence-vpc"
-  ip_cidr_range = "11.0.0.0/28"
+  network = var.vpc
+  ip_cidr_range = var.ip_cidr_range_svpca
+  min_instances = 1
+  max_instances = 1
 }
 
 # deploys application image in cloud run container
@@ -64,7 +67,7 @@ resource "google_cloud_run_service" "container" {
         "autoscaling.knative.dev/maxScale"  = tostring(var.max_instances)
         "autoscaling.knative.dev/minScale"  = tostring(var.min_instances)
         "run.googleapis.com/cpu-throttling" = "false"
-        "run.googleapis.com/vpc-access-connector" = google_vpc_access_connector.accessors.name
+        "run.googleapis.com/vpc-access-connector" = var.vpc?google_vpc_access_connector.accessors[0].name : ""
         "run.googleapis.com/vpc-access-egress" = "all-traffic"
       }
     }

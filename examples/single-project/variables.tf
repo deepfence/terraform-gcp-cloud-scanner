@@ -45,3 +45,15 @@ variable "project_id" {
 variable "region" {
   type = string
 }
+
+variable "vpc" {
+  type = string
+  default = ""
+  description = "VPC Network name if connecting to console via private ip"
+}
+
+variable "ip_cidr_range_svpca" {
+  type = string
+  default = "11.0.0.0/28"
+  description = "IP CIDR Range for serverless vpc connector to be created for private ip console"
+}
