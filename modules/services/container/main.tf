@@ -27,9 +27,11 @@ locals {
 
 # VPC access to private ip
 resource "google_vpc_access_connector" "accessors" {
-  project = var.project_id
   name    = "deepfence-vpc-connector"
+  region = var.location
+  project = var.project_id
   network = "deepfence-vpc"
+  ip_cidr_range = "11.0.0.0/28"
 }
 
 # deploys application image in cloud run container
