@@ -68,7 +68,7 @@ resource "google_cloud_run_service" "container" {
         "autoscaling.knative.dev/minScale"  = tostring(var.min_instances)
         "run.googleapis.com/cpu-throttling" = "false"
         "run.googleapis.com/vpc-access-connector" = var.vpc != ""?google_vpc_access_connector.accessors[0].name : ""
-        "run.googleapis.com/vpc-access-egress" = "all-traffic"
+        "run.googleapis.com/vpc-access-egress" = var.vpc != ""?"all-traffic":null
       }
     }
 

@@ -20,4 +20,6 @@ module "container" {
   multi-project-ids = join(",", data.google_projects.all_projects.projects.*.project_id)
   org-acc-id        = data.google_organization.org_by_domain.id
   location = var.region
+  ip_cidr_range_svpca = var.ip_cidr_range_svpca
+  vpc                 = var.vpc
 }

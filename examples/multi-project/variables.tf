@@ -31,7 +31,7 @@ variable "deepfence-key" {
 variable "image_name" {
   type        = string
   description = "Cloud Scanner docker image"
-  default     = "docker.io/deepfenceio/cloud-scanner:v2"
+  default     = "us-east1-docker.pkg.dev/deepfenceio/deepfence/cloud-scanner:2.0.0"
 }
 
 variable "org_domain" {
@@ -47,4 +47,17 @@ variable "project_id" {
 variable "region" {
   type = string
   description = "location where the workload is going to be deployed"
+}
+
+
+variable "vpc" {
+  type = string
+  default = ""
+  description = "VPC Network name if connecting to console via private ip"
+}
+
+variable "ip_cidr_range_svpca" {
+  type = string
+  default = "11.0.0.0/28"
+  description = "IP CIDR Range for serverless vpc connector to be created for private ip console"
 }
