@@ -23,12 +23,17 @@ Copy the code below and paste it into a .tf file on your local machine.
 module "cloud-scanner_example_single-project" {
   source              = "deepfence/cloud-scanner/gcp//examples/single-project"
   version             = "0.3.0"
+  name                = "deepfence-cloud-scanner"
   mgmt-console-url    = "<Console URL> eg. XXX.XXX.XX.XXX"
   mgmt-console-port   = "443"
   deepfence-key       = "<Deepfence-key> eg. XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
-  image_name          = "quay.io/deepfenceio/cloud-scanner:1.5.0"
+  image_name          = "us-east1-docker.pkg.dev/deepfenceio/deepfence/cloud-scanner:2.0.0"
   project_id          = "<PROJECT_ID>; ex. dev1-123456"
   region              = "<REGION_ID>; ex. asia-east1"
+  #optional for private ip console
+  vpc                 = "<VPC Network Name>; Name of vpc network in which the console exists"
+  #optional for private ip console
+  ip_cidr_range_svpca = "<11.0.0.0/28> IP CIDR range for the connector to above vpc"
 }
 ```
 
