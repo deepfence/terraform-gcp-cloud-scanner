@@ -20,10 +20,15 @@ This module deploys Cloud Scanner for Google Cloud by creating underlying resour
 
 ### - Single-Project
 
-Deepfence workload will be deployed in the same account where user's resources will be watched.
+Deepfence workload will be deployed in the same project where user's resources will be monitored.
 
-Please check out below to implement the same-
 [`./examples/single-project`](https://github.com/deepfence/terraform-gcp-cloud-scanner/tree/main/examples/single-project)
+
+### - Multiple-Projects
+
+Deepfence workload will be deployed in a selected project and roles will be created in all other projects and all projects will be monitored.
+
+[`./examples/multi-project`](https://github.com/deepfence/terraform-gcp-cloud-scanner/tree/main/examples/multi-project)
 
 ## Authors
 

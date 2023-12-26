@@ -66,13 +66,13 @@ variable "image_name" {
 
 variable "cpu" {
   type        = string
-  default     = "1"
+  default     = "4"
   description = "Amount of CPU to reserve for cloud-scanner cloud run service"
 }
 
 variable "memory" {
   type        = string
-  default     = "2048Mi"
+  default     = "8096Mi"
   description = "Amount of memory to reserve for cloud-scanner cloud run service"
 }
 
@@ -102,4 +102,11 @@ variable "ip_cidr_range_svpca" {
   type = string
   default = "11.0.0.0/28"
   description = "IP CIDR Range for serverless vpc connector to be created for private ip console"
+}
+
+variable "labels" {
+  type = map(string)
+  default = {
+    name = "deepfence-cloud-scanner"
+  }
 }

@@ -1,6 +1,6 @@
-# Cloud Scanner in Google Cloud<br/>[ Example :: Single-Project ] 
+# Cloud Scanner in Google Cloud<br/>[ Example :: Multiple-Project ] 
 
-Deploy Cloud Scanner for Google Cloud in a single project.<br/>
+Deploy Cloud Scanner for Google Cloud in multiple projects.<br/>
 
 ### Notice
 **Deployment cost** - This example will create resources that cost money.<br/>Run `terraform destroy` when you don't need them anymore
@@ -20,10 +20,12 @@ Copy the code below and paste it into a .tf file on your local machine.
 
 ```terraform
 
-module "cloud-scanner_example_single-project" {
-  source              = "deepfence/cloud-scanner/gcp//examples/single-project"
+module "cloud-scanner_example_multiple-projects" {
+  source              = "deepfence/cloud-scanner/gcp//examples/multi-project"
   version             = "0.4.0"
   name                = "deepfence-cloud-scanner"
+  # org_domain: root project name
+  org_domain          = ""
   # mgmt-console-url: deepfence.customer.com or 22.33.44.55
   mgmt-console-url    = "<Console URL>"
   mgmt-console-port   = "443"
