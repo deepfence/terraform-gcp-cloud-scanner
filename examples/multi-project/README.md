@@ -42,8 +42,8 @@ module "cloud-scanner_example_multiple-projects" {
   # IP CIDR range for the connector to above vpc
   # Example: 11.0.0.0/28
   ip_cidr_range_svpca = ""
-  cpu                 = "2"
-  memory              = "4096Mi"
+  cpu                 = "4"
+  memory              = "8096Mi"
   labels              = {
     name = "deepfence-cloud-scanner"
   }
