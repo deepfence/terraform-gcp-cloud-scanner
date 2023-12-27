@@ -57,6 +57,7 @@ resource "google_cloud_run_service" "container" {
     annotations = {
       "run.googleapis.com/ingress" = "internal"
     }
+    labels = var.labels
   }
 
   template {

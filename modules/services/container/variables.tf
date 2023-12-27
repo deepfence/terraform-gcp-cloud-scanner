@@ -95,7 +95,9 @@ variable "ip_cidr_range_svpca" {
   description = "IP CIDR Range for serverless vpc connector to be created for private ip console"
 }
 
-
-
-
-
+variable "labels" {
+  type = map(string)
+  default = {
+    name = "deepfence-cloud-scanner"
+  }
+}
