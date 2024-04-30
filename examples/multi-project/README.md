@@ -30,7 +30,7 @@ module "cloud-scanner_example_multiple-projects" {
   mgmt-console-url    = "<Console URL>"
   mgmt-console-port   = "443"
   deepfence-key       = "<Deepfence-key>"
-  image_name          = "us-east1-docker.pkg.dev/deepfenceio/deepfence/cloud-scanner:2.1.0"
+  image_name          = "us-east1-docker.pkg.dev/deepfenceio/deepfence/cloud-scanner:2.2.0"
   # project_id example: dev1-123456
   project_id          = "<PROJECT_ID>"
   # region example: asia-east1
