@@ -25,12 +25,6 @@ variable "container_sa_email" {
 
 # container variables
 
-variable "mode" {
-  type        = string
-  description = "mode"
-  default     = "service"
-}
-
 variable "mgmt-console-url" {
   type        = string
   description = "mgmt-console-url"
@@ -93,14 +87,14 @@ variable "org-acc-id" {
 }
 
 variable "vpc" {
-  type = string
-  default = ""
+  type        = string
+  default     = ""
   description = "VPC Network name if connecting to console via private ip"
 }
 
 variable "ip_cidr_range_svpca" {
-  type = string
-  default = "11.0.0.0/28"
+  type        = string
+  default     = "11.0.0.0/28"
   description = "IP CIDR Range for serverless vpc connector to be created for private ip console"
 }
 
@@ -109,4 +103,21 @@ variable "labels" {
   default = {
     name = "deepfence-cloud-scanner"
   }
+}
+
+variable "log_level" {
+  type        = string
+  default     = "info"
+  description = "Log level"
+  validation {
+    condition     = contains(["error", "warn", "info", "debug", "trace"], var.log_level)
+    error_message = "Must be one of error, warn, info, debug, trace"
+  }
+}
+
+
+variable "is_organizational" {
+  type        = bool
+  default     = true
+  description = "whether Deepfence cloud scanner should be deployed in an organizational setup"
 }

@@ -6,33 +6,61 @@ locals {
     # Annotations can't be used or they can't be ignored in the lifecycle, thus triggering
     # recreations even if the config hasn't changed.
     {
-      name  = "CLOUD_PROVIDER"
-      value = var.cloud_provider
+      name  = "CLOUDSDK_CORE_PROJECT"
+      value = var.project_id
+    },
+    {
+      name  = "CLOUD_REGION"
+      value = var.location
     },
     {
       name  = "CLOUD_ACCOUNT_ID"
       value = var.project_id
     },
     {
-      name  = "CLOUDSDK_CORE_PROJECT"
-      value = var.project_id
+      name  = "CLOUD_PROVIDER"
+      value = "gcp"
     },
     {
-      name  = "GCP_REGION"
-      value = data.google_client_config.current.region
-    }
+      name  = "MGMT_CONSOLE_URL"
+      value = var.mgmt-console-url
+    },
+    {
+      name  = "MGMT_CONSOLE_PORT"
+      value = var.mgmt-console-port
+    },
+    {
+      name  = "DEEPFENCE_KEY"
+      value = var.deepfence-key
+    },
+    {
+      name  = "ORGANIZATION_DEPLOYMENT"
+      value = tostring(var.is_organizational)
+    },
+    {
+      name  = "HTTP_SERVER_REQUIRED"
+      value = "true"
+    },
+    {
+      name  = "LOG_LEVEL"
+      value = var.log_level
+    },
+    {
+      name  = "SCAN_INACTIVE_THRESHOLD"
+      value = "21600"
+    },
     ]
   )
 }
 
 # VPC access to private ip
 resource "google_vpc_access_connector" "accessors" {
-  count = var.vpc != "" ? 1 : 0
-  name    = var.name
-  region = var.location
-  project = var.project_id
-  network = var.vpc
-  ip_cidr_range = var.ip_cidr_range_svpca
+  count          = var.vpc != "" ? 1 : 0
+  name           = var.name
+  region         = var.location
+  project        = var.project_id
+  network        = var.vpc
+  ip_cidr_range  = var.ip_cidr_range_svpca
   min_throughput = 200
   max_throughput = 300
 }
@@ -41,7 +69,7 @@ resource "google_vpc_access_connector" "accessors" {
 
 resource "google_cloud_run_service" "container" {
   location = var.location
-  project = var.project_id
+  project  = var.project_id
   name     = var.name
 
   lifecycle {
@@ -65,18 +93,17 @@ resource "google_cloud_run_service" "container" {
   template {
     metadata {
       annotations = {
-        "autoscaling.knative.dev/maxScale"  = tostring(var.max_instances)
-        "autoscaling.knative.dev/minScale"  = tostring(var.min_instances)
-        "run.googleapis.com/cpu-throttling" = "false"
-        "run.googleapis.com/vpc-access-connector" = var.vpc != ""?google_vpc_access_connector.accessors[0].name : ""
-        "run.googleapis.com/vpc-access-egress" = var.vpc != ""?"all-traffic":null
+        "autoscaling.knative.dev/maxScale"        = tostring(var.max_instances)
+        "autoscaling.knative.dev/minScale"        = tostring(var.min_instances)
+        "run.googleapis.com/cpu-throttling"       = "false"
+        "run.googleapis.com/vpc-access-connector" = var.vpc != "" ? google_vpc_access_connector.accessors[0].name : ""
+        "run.googleapis.com/vpc-access-egress"    = var.vpc != "" ? "all-traffic" : null
       }
     }
 
     spec {
       containers {
-        image   = var.image_name
-        command = ["/usr/local/bin/cloud_compliance_scan", "-mode", var.mode, "-mgmt-console-url", var.mgmt-console-url, "-mgmt-console-port", var.mgmt-console-port, "-deepfence-key", var.deepfence-key, "-http-server-required"]
+        image = var.image_name
         resources {
           limits = {
             cpu    = var.cpu,
