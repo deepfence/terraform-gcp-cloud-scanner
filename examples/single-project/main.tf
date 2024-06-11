@@ -14,7 +14,6 @@ resource "google_service_account" "container_sa" {
 module "container" {
   source              = "../../modules/services/container"
   name                = "${var.name}-container"
-  mode                = var.mode
   mgmt-console-url    = var.mgmt-console-url
   mgmt-console-port   = var.mgmt-console-port
   deepfence-key       = var.deepfence-key
@@ -27,4 +26,6 @@ module "container" {
   ip_cidr_range_svpca = var.ip_cidr_range_svpca
   vpc                 = var.vpc
   labels              = var.labels
+  is_organizational   = "false"
+  log_level           = var.log_level
 }
