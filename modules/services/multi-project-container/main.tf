@@ -49,7 +49,7 @@ locals {
       name  = "SCAN_INACTIVE_THRESHOLD"
       value = "21600"
     },
-    ]
+  ]
   )
 }
 
@@ -142,6 +142,6 @@ resource "google_project_iam_member" "project_iam_member" {
   for_each = toset(data.google_projects.projects.projects.*.project_id)
 
   project = each.value
-  role    = "roles/editor"
+  role    = "roles/iam.securityReviewer"
   member  = "serviceAccount:${var.container_sa_email}"
 }

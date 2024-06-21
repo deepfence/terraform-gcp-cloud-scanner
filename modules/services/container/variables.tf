@@ -48,7 +48,7 @@ variable "min_instances" {
 
 variable "image_name" {
   type        = string
-  default     = "us-east1-docker.pkg.dev/deepfenceio/deepfence/cloud-scanner:latest"
+  default     = "us-east1-docker.pkg.dev/deepfenceio/deepfence/cloud_scanner_ce:2.3.0"
   description = "Deepfence cloud scanner image. GCP only allows the deployment of images that are registered in gcr.io"
 }
 

@@ -28,8 +28,9 @@ module "cloud-scanner_example_single-project" {
   mgmt-console-url    = "<Console URL>"
   mgmt-console-port   = "443"
   deepfence-key       = "<Deepfence-key>"
+  # ThreatMapper
   image_name          = "us-east1-docker.pkg.dev/deepfenceio/deepfence/cloud_scanner_ce:2.3.0"
-  # for ThreatStryker
+  # ThreatStryker
   # image_name          = "us-east1-docker.pkg.dev/deepfenceio/deepfence/cloud_scanner:2.3.0"
   # project_id example: dev1-123456
   project_id          = "<PROJECT_ID>"

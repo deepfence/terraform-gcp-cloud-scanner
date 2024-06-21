@@ -1,3 +1,4 @@
+# creates service account with read only access for resources
 resource "google_service_account" "container_sa" {
   account_id   = "${var.name}-sa"
   display_name = "Service account for container"
