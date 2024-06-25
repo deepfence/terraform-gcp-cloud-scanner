@@ -18,6 +18,10 @@ locals {
       value = var.project_id
     },
     {
+      name  = "CLOUD_ORGANIZATION_ID"
+      value = var.project_id
+    },
+    {
       name  = "MGMT_CONSOLE_URL"
       value = var.mgmt-console-url
     },
