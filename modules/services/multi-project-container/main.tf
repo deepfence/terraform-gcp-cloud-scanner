@@ -149,3 +149,11 @@ resource "google_project_iam_member" "project_iam_member" {
   role    = "roles/iam.securityReviewer"
   member  = "serviceAccount:${var.container_sa_email}"
 }
+
+resource "google_project_iam_member" "project_browser" {
+  for_each = toset(data.google_projects.projects.projects.*.project_id)
+
+  project = each.value
+  role    = "roles/browser"
+  member  = "serviceAccount:${var.container_sa_email}"
+}
