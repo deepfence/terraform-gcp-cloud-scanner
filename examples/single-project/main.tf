@@ -14,6 +14,7 @@ module "container" {
   deepfence-key       = var.deepfence-key
   image_name          = var.image_name
   project_id          = var.project_id
+  project_name        = var.project_name
   location            = var.region
   container_sa_email  = google_service_account.container_sa.email
   cpu                 = var.cpu

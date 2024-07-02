@@ -34,6 +34,12 @@ variable "deepfence-key" {
   description = "deepfence-key"
 }
 
+variable "project_name" {
+  type        = string
+  description = "GCP project name"
+  default     = ""
+}
+
 variable "max_instances" {
   type        = number
   description = "Max number of instances for the cloud scanner"

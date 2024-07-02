@@ -18,6 +18,10 @@ locals {
       value = var.project_id
     },
     {
+      name  = "CLOUD_ACCOUNT_NAME"
+      value = var.project_name
+    },
+    {
       name  = "CLOUD_PROVIDER"
       value = "gcp"
     },

@@ -25,6 +25,12 @@ variable "deepfence-key" {
   default     = ""
 }
 
+variable "project_name" {
+  type        = string
+  description = "GCP project name"
+  default     = ""
+}
+
 variable "image_name" {
   type        = string
   description = "Cloud Scanner docker image"
