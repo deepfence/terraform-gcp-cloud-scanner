@@ -130,6 +130,8 @@ resource "google_cloud_run_service" "container" {
       service_account_name = var.container_sa_email
     }
   }
+
+  depends_on = [google_project_iam_member.run_viewer]
 }
 
 # assigns cloud run service invoker role

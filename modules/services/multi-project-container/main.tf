@@ -78,6 +78,7 @@ resource "google_cloud_run_service" "container" {
   location = var.location
   name     = var.name
   project  = var.project_id
+
   lifecycle {
     # We ignore changes in some annotations Cloud Run adds to the resource so we can
     # avoid unwanted recreations.
@@ -132,6 +133,8 @@ resource "google_cloud_run_service" "container" {
       service_account_name = var.container_sa_email
     }
   }
+
+  depends_on = [google_project_iam_member.run_viewer, google_project_iam_member.project_browser]
 }
 
 # assigns cloud run service invoker role
@@ -146,7 +149,7 @@ resource "google_cloud_run_service_iam_member" "run_invoker" {
 
 # assigns read only resource access on cloud
 
-resource "google_project_iam_member" "project_iam_member" {
+resource "google_project_iam_member" "run_viewer" {
   for_each = toset(data.google_projects.projects.projects.*.project_id)
 
   project = each.value
