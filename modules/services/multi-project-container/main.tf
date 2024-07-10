@@ -18,6 +18,10 @@ locals {
       value = var.project_id
     },
     {
+      name  = "DEPLOYED_ACCOUNT_ID"
+      value = var.project_id
+    },
+    {
       name  = "CLOUD_ACCOUNT_NAME"
       value = ""
     },
