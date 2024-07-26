@@ -22,7 +22,7 @@ Copy the code below and paste it into a .tf file on your local machine.
 
 module "cloud-scanner_example_multiple-projects" {
   source              = "deepfence/cloud-scanner/gcp//examples/multi-project"
-  version             = "0.5.0"
+  version             = "0.6.0"
   name                = "deepfence-cloud-scanner"
   # org_domain: root project name
   org_domain          = ""
