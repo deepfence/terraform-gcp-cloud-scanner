@@ -13,6 +13,18 @@ variable "cluster_location" {
   description = "target cluster location/region"
 }
 
+variable "gke_host" {
+  type = string
+}
+
+variable "gke_token" {
+  type = string
+}
+
+variable "gke_cluster_ca_certificate" {
+  type = string
+}
+
 variable "name" {
   type        = string
   description = "Name to be assigned to all child resources. A suffix may be added internally when required. Use default value unless you need to install multiple instances"

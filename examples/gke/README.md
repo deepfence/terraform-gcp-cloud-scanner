@@ -20,24 +20,36 @@ Copy the code below and paste it into a .tf file on your local machine.
 
 ```terraform
 
+data "google_client_config" "current" {}
+
+# target cluster to deploy cloud scanner
+data "google_container_cluster" "target_cluster" {
+  name     = "<TARGET GKE CLUSTER NAME>"
+  location = "<TARGET GKE CLUSTER NAME>"
+  project  = "<PROJECT_ID>"
+}
+
 module "cloud-scanner_example_single_project" {
-  source           = "deepfence/cloud-scanner/gcp//examples/gke"
-  version          = "0.7.0"
-  name             = "deepfence-cloud-scanner"
+  source                     = "deepfence/cloud-scanner/gcp//examples/gke"
+  version                    = "0.7.1"
+  gke_host                   = "https://${data.google_container_cluster.target_cluster.endpoint}"
+  gke_token                  = data.google_client_config.current.access_token
+  gke_cluster_ca_certificate = base64decode(data.google_container_cluster.target_cluster.master_auth[0].cluster_ca_certificate,)
+  name                       = "deepfence-cloud-scanner"
   # mgmt-console-url: deepfence.customer.com or 22.33.44.55
-  mgmt-console-url = "<Console URL>"
-  deepfence-key    = "<Deepfence-key>"
+  mgmt-console-url           = "<Console URL>"
+  deepfence-key              = "<Deepfence-key>"
   # quay.io/deepfenceio/cloud_scanner_ce if using ThreatMapper. quay.io/deepfenceio/cloud_scanner if using ThreatStryker
-  image_name       = "quay.io/deepfenceio/cloud_scanner_ce"
-  image_tag        = "2.3.1"
+  image_name                 = "quay.io/deepfenceio/cloud_scanner_ce"
+  image_tag                  = "2.3.1"
   # project_id example: dev1-123456
-  project_id       = "<PROJECT_ID>"
+  project_id                 = "<PROJECT_ID>"
   # region example: asia-east1
-  region           = "<REGION_ID>"
+  region                     = "<REGION_ID>"
   # target gke cluster to deploy cloud scanner
-  cluster_name     = "<TARGET GKE CLUSTER NAME>"
+  cluster_name               = "<TARGET GKE CLUSTER NAME>"
   # target gke cluster location
-  cluster_location = "<TARGET GKE CLUSTER LOCATION>"
+  cluster_location           = "<TARGET GKE CLUSTER LOCATION>"
 }
 ```
 
@@ -46,29 +58,41 @@ Copy the code below and paste it into a .tf file on your local machine.
 
 ```terraform
 
+data "google_client_config" "current" {}
+
+# target cluster to deploy cloud scanner
+data "google_container_cluster" "target_cluster" {
+  name     = "<TARGET GKE CLUSTER NAME>"
+  location = "<TARGET GKE CLUSTER NAME>"
+  project  = "<PROJECT_ID>"
+}
+
 module "cloud-scanner_example_multiple_project" {
-  source                   = "deepfence/cloud-scanner/gcp//examples/gke"
-  version                  = "0.7.0"
-  name                     = "deepfence-cloud-scanner"
+  source                     = "deepfence/cloud-scanner/gcp//examples/gke"
+  version                    = "0.7.1"
+  name                       = "deepfence-cloud-scanner"
+  gke_host                   = "https://${data.google_container_cluster.target_cluster.endpoint}"
+  gke_token                  = data.google_client_config.current.access_token
+  gke_cluster_ca_certificate = base64decode(data.google_container_cluster.target_cluster.master_auth[0].cluster_ca_certificate,)
   # mgmt-console-url: deepfence.customer.com or 22.33.44.55
-  mgmt-console-url         = "<Console URL>"
-  deepfence-key            = "<Deepfence-key>"
+  mgmt-console-url           = "<Console URL>"
+  deepfence-key              = "<Deepfence-key>"
   # quay.io/deepfenceio/cloud_scanner_ce if using ThreatMapper. quay.io/deepfenceio/cloud_scanner if using ThreatStryker
-  image_name               = "quay.io/deepfenceio/cloud_scanner_ce"
-  image_tag                = "2.3.1"
+  image_name                 = "quay.io/deepfenceio/cloud_scanner_ce"
+  image_tag                  = "2.3.1"
   # project_id example: dev1-123456
-  project_id               = "<PROJECT_ID>"
+  project_id                 = "<PROJECT_ID>"
   # region example: asia-east1
-  region                   = "<REGION_ID>"
+  region                     = "<REGION_ID>"
   # target gke cluster to deploy cloud scanner
-  cluster_name             = "<TARGET GKE CLUSTER NAME>"
+  cluster_name               = "<TARGET GKE CLUSTER NAME>"
   # target gke cluster location
-  cluster_location         = "<TARGET GKE CLUSTER LOCATION>"
-  isOrganizationDeployment = true
+  cluster_location           = "<TARGET GKE CLUSTER NAME>"
+  isOrganizationDeployment   = true
   # project id where the cloud scanner is deployed 
-  deployedAccountID        = "<DEPLOYED PROJECT ID>"
+  deployedAccountID          = "<DEPLOYED PROJECT ID>"
   # organization project id 
-  organizationAccountID    = "<ORG PROJECT ID>"
+  organizationAccountID      = "<ORG PROJECT ID>"
 }
 ```
 
