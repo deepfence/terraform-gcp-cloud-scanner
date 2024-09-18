@@ -20,10 +20,22 @@ Copy the code below and paste it into a .tf file on your local machine.
 
 ```terraform
 
+data "google_client_config" "current" {}
+
+# target cluster to deploy cloud scanner
+data "google_container_cluster" "target_cluster" {
+  name     = "<TARGET GKE CLUSTER NAME>"
+  location = "<TARGET GKE CLUSTER LOCATION>"
+  project  = "<PROJECT_ID>"
+}
+
 module "cloud-scanner_example_single_project" {
   source           = "deepfence/cloud-scanner/gcp//examples/gke"
-  version          = "0.7.0"
+  version          = "0.7.1"
   name             = "deepfence-cloud-scanner"
+  gke_host                   = "https://${data.google_container_cluster.target_cluster.endpoint}"
+  gke_token                  = data.google_client_config.current.access_token
+  gke_cluster_ca_certificate = base64decode(data.google_container_cluster.target_cluster.master_auth[0].cluster_ca_certificate, )
   # mgmt-console-url: deepfence.customer.com or 22.33.44.55
   mgmt-console-url = "<Console URL>"
   deepfence-key    = "<Deepfence-key>"
@@ -46,10 +58,22 @@ Copy the code below and paste it into a .tf file on your local machine.
 
 ```terraform
 
+data "google_client_config" "current" {}
+
+# target cluster to deploy cloud scanner
+data "google_container_cluster" "target_cluster" {
+  name     = "<TARGET GKE CLUSTER NAME>"
+  location = "<TARGET GKE CLUSTER LOCATION>"
+  project  = "<PROJECT_ID>"
+}
+
 module "cloud-scanner_example_multiple_project" {
   source                   = "deepfence/cloud-scanner/gcp//examples/gke"
-  version                  = "0.7.0"
+  version                  = "0.7.1"
   name                     = "deepfence-cloud-scanner"
+  gke_host                   = "https://${data.google_container_cluster.target_cluster.endpoint}"
+  gke_token                  = data.google_client_config.current.access_token
+  gke_cluster_ca_certificate = base64decode(data.google_container_cluster.target_cluster.master_auth[0].cluster_ca_certificate, )
   # mgmt-console-url: deepfence.customer.com or 22.33.44.55
   mgmt-console-url         = "<Console URL>"
   deepfence-key            = "<Deepfence-key>"

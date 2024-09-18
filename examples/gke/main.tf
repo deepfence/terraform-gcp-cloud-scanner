@@ -21,23 +21,14 @@ module "workload_identity" {
   ]
 }
 
-# target cluster to deploy cloud scanner
-# data "google_container_cluster" "target_cluster" {
-#   name     = var.cluster_name
-#   location = var.cluster_location
-#   project  = var.project_id
-# }
-
-# # configures helm provider for the target cluster
-# provider "helm" {
-#   kubernetes {
-#     host  = "https://${data.google_container_cluster.target_cluster.endpoint}"
-#     token = data.google_client_config.current.access_token
-#     cluster_ca_certificate = base64decode(
-#       data.google_container_cluster.target_cluster.master_auth[0].cluster_ca_certificate,
-#     )
-#   }
-# }
+# configures helm provider for the target cluster
+provider "helm" {
+  kubernetes {
+    host                   = var.gke_host
+    token                  = var.gke_token
+    cluster_ca_certificate = var.gke_cluster_ca_certificate
+  }
+}
 
 # install cloud scanner on the target cluster
 # uses the workload identity and service accounts created previously
