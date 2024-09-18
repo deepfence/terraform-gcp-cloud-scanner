@@ -20,7 +20,7 @@ Copy the code below and paste it into a .tf file on your local machine.
 
 ```terraform
 
-module "cloud-scanner_example_single-project" {
+module "cloud-scanner_example_single_project" {
   source           = "deepfence/cloud-scanner/gcp//examples/gke"
   version          = "0.7.0"
   name             = "deepfence-cloud-scanner"
@@ -34,8 +34,10 @@ module "cloud-scanner_example_single-project" {
   project_id       = "<PROJECT_ID>"
   # region example: asia-east1
   region           = "<REGION_ID>"
-  cluster_name     = "cs-cluster"
-  cluster_location = "us-central1-c"
+  # target gke cluster to deploy cloud scanner
+  cluster_name     = "<TARGET GKE CLUSTER NAME>"
+  # target gke cluster location
+  cluster_location = "<TARGET GKE CLUSTER LOCATION>"
 }
 ```
 
@@ -44,7 +46,7 @@ Copy the code below and paste it into a .tf file on your local machine.
 
 ```terraform
 
-module "cloud-scanner_example_single-project" {
+module "cloud-scanner_example_multiple_project" {
   source                   = "deepfence/cloud-scanner/gcp//examples/gke"
   version                  = "0.7.0"
   name                     = "deepfence-cloud-scanner"
