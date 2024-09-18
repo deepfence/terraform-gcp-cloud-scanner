@@ -61,7 +61,7 @@ locals {
       name  = "SCAN_INACTIVE_THRESHOLD"
       value = "21600"
     },
-  ]
+    ]
   )
 }
 
