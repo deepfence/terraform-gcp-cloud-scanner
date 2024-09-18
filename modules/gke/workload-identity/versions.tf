@@ -12,8 +12,5 @@ terraform {
       source  = "hashicorp/google-beta"
       version = ">= 6.3.0"
     }
-    helm = {
-      source = "hashicorp/helm"
-    }
   }
 }
