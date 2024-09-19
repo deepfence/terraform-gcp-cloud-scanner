@@ -40,3 +40,8 @@ variable "isOrganizationDeployment" {
   type    = bool
   default = false
 }
+
+variable "enable_workload_identity" {
+  type    = bool
+  default = false
+}
