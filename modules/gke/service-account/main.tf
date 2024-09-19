@@ -20,6 +20,7 @@ resource "google_project_iam_member" "project_browser" {
 }
 
 resource "google_service_account_iam_member" "main" {
+  count = var.enable_workload_identity ? 1 : 0
   service_account_id = var.service_account_name
   role               = "roles/iam.workloadIdentityUser"
   member             = local.workload_member

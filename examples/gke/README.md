@@ -31,7 +31,7 @@ data "google_container_cluster" "target_cluster" {
 
 module "cloud-scanner_example_single_project" {
   source                     = "deepfence/cloud-scanner/gcp//examples/gke"
-  version                    = "0.7.1"
+  version                    = "0.7.2"
   gke_host                   = "https://${data.google_container_cluster.target_cluster.endpoint}"
   gke_token                  = data.google_client_config.current.access_token
   gke_cluster_ca_certificate = base64decode(data.google_container_cluster.target_cluster.master_auth[0].cluster_ca_certificate,)
@@ -69,7 +69,7 @@ data "google_container_cluster" "target_cluster" {
 
 module "cloud-scanner_example_multiple_project" {
   source                     = "deepfence/cloud-scanner/gcp//examples/gke"
-  version                    = "0.7.1"
+  version                    = "0.7.2"
   name                       = "deepfence-cloud-scanner"
   gke_host                   = "https://${data.google_container_cluster.target_cluster.endpoint}"
   gke_token                  = data.google_client_config.current.access_token
