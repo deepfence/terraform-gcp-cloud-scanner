@@ -1,4 +1,4 @@
-# Cloud Scanner in Google Cloud<br/>[ Example :: GKE-Cloud-Scanner ] 
+# Cloud Scanner in Google Cloud<br/>[ Example :: GCE compute instance Cloud Scanner ] 
 
 Deploy Deepfence Cloud Scanner for Google Cloud on a GKE cluster using workload identity.<br/>
 
@@ -22,7 +22,7 @@ Copy the code below and paste it into a .tf file on your local machine.
 
 data "google_client_config" "current" {}
 
-module "cloud-scanner_example_single_project" {
+module "cloud_scanner_example_single_project" {
   source     = "deepfence/cloud-scanner/gcp//examples/gce-vm"
   version    = "0.7.2"
   name       = "deepfence-cloud-scanner"
@@ -30,6 +30,10 @@ module "cloud-scanner_example_single_project" {
   project_id = "<PROJECT_ID>"
 }
 
+
+output "service_account_email" {
+  value = module.cloud_scanner_example_single_project.service_account_email
+}
 ```
 
 - For Organization Projects 
@@ -39,13 +43,17 @@ Copy the code below and paste it into a .tf file on your local machine.
 
 data "google_client_config" "current" {}
 
-module "cloud-scanner_example_single_project" {
+module "cloud_scanner_example_single_project" {
   source                   = "deepfence/cloud-scanner/gcp//examples/gce-vm"
   version                  = "0.7.2"
   name                     = "deepfence-cloud-scanner"
   # project_id example: dev1-123456
   project_id               = "<PROJECT_ID>"
   isOrganizationDeployment = true
+}
+
+output "service_account_email" {
+  value = module.cloud_scanner_example_multiple_project.service_account_email
 }
 
 ```
