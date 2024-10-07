@@ -57,7 +57,7 @@ variable "cloud_scanner_chart_name" {
 
 variable "cloud_scanner_chart_version" {
   type        = string
-  default     = "2.3.1"
+  default     = "2.4.0"
   description = "cloud scanner chart version"
 }
 
@@ -69,7 +69,7 @@ variable "cloud_scanner_image" {
 
 variable "cloud_scanner_image_tag" {
   type        = string
-  default     = "2.3.1"
+  default     = "2.4.0"
   description = "cloud scanner container image tag"
 }
 

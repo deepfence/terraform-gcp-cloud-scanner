@@ -22,7 +22,7 @@ Copy the code below and paste it into a .tf file on your local machine.
 
 module "cloud-scanner_example_single-project" {
   source              = "deepfence/cloud-scanner/gcp//examples/single-project"
-  version             = "0.6.0"
+  version             = "0.8.0"
   name                = "deepfence-cloud-scanner"
   # mgmt-console-url: deepfence.customer.com or 22.33.44.55
   mgmt-console-url    = "<Console URL>"
@@ -31,9 +31,9 @@ module "cloud-scanner_example_single-project" {
   # GCP Project Name (Optional, for easy identification)
   project_name        = ""
   # ThreatMapper
-  image_name          = "us-east1-docker.pkg.dev/deepfenceio/deepfence/cloud_scanner_ce:2.3.0"
+  image_name          = "us-east1-docker.pkg.dev/deepfenceio/deepfence/cloud_scanner_ce:2.4.0"
   # ThreatStryker
-  # image_name          = "us-east1-docker.pkg.dev/deepfenceio/deepfence/cloud_scanner:2.3.0"
+  # image_name          = "us-east1-docker.pkg.dev/deepfenceio/deepfence/cloud_scanner:2.4.0"
   # project_id example: dev1-123456
   project_id          = "<PROJECT_ID>"
   # region example: asia-east1
@@ -87,7 +87,7 @@ module "cloud-scanner_example_single-project" {
 |------|-------------|------|---------|:--------:|
 | <a name="input_cpu"></a> [cpu](#input\_cpu) | Amount of CPU to reserve for cloud-scanner cloud run service | `string` | `"1"` | no |
 | <a name="input_deepfence-key"></a> [deepfence-key](#input\_deepfence-key) | deepfence-key | `string` | `""` | no |
-| <a name="input_image_name"></a> [image\_name](#input\_image\_name) | Cloud Scanner docker image | `string` | `"us-east1-docker.pkg.dev/deepfenceio/deepfence/cloud_scanner_ce:2.3.0"` | no |
+| <a name="input_image_name"></a> [image\_name](#input\_image\_name) | Cloud Scanner docker image | `string` | `"us-east1-docker.pkg.dev/deepfenceio/deepfence/cloud_scanner_ce:2.4.0"` | no |
 | <a name="input_ip_cidr_range_svpca"></a> [ip\_cidr\_range\_svpca](#input\_ip\_cidr\_range\_svpca) | IP CIDR Range for serverless vpc connector to be created for private ip console | `string` | `"11.0.0.0/28"` | no |
 | <a name="input_labels"></a> [labels](#input\_labels) | n/a | `map(string)` | <pre>{<br>  "name": "deepfence-cloud-scanner"<br>}</pre> | no |
 | <a name="input_log_level"></a> [log\_level](#input\_log\_level) | Log level | `string` | `"info"` | no |

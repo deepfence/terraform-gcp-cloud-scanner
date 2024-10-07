@@ -24,7 +24,7 @@ data "google_client_config" "current" {}
 
 module "cloud_scanner_example_single_project" {
   source     = "deepfence/cloud-scanner/gcp//examples/gce-vm"
-  version    = "0.7.2"
+  version    = "0.8.0"
   name       = "deepfence-cloud-scanner"
   # project_id example: dev1-123456
   project_id = "<PROJECT_ID>"
@@ -45,7 +45,7 @@ data "google_client_config" "current" {}
 
 module "cloud_scanner_example_single_project" {
   source                   = "deepfence/cloud-scanner/gcp//examples/gce-vm"
-  version                  = "0.7.2"
+  version                  = "0.8.0"
   name                     = "deepfence-cloud-scanner"
   # project_id example: dev1-123456
   project_id               = "<PROJECT_ID>"
