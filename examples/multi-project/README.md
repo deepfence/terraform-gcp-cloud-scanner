@@ -22,7 +22,7 @@ Copy the code below and paste it into a .tf file on your local machine.
 
 module "cloud-scanner_example_multiple-projects" {
   source              = "deepfence/cloud-scanner/gcp//examples/multi-project"
-  version             = "0.9.0"
+  version             = "0.9.1"
   name                = "deepfence-cloud-scanner"
   # org_domain: root project name
   org_domain          = ""
@@ -31,9 +31,9 @@ module "cloud-scanner_example_multiple-projects" {
   mgmt-console-port   = "443"
   deepfence-key       = "<Deepfence-key>"
   # ThreatMapper
-  image_name          = "us-east1-docker.pkg.dev/deepfenceio/deepfence/cloud_scanner_ce:2.5.0"
+  image_name          = "us-east1-docker.pkg.dev/deepfenceio/deepfence/cloud_scanner_ce:2.5.1"
   # ThreatStryker
-  # image_name          = "us-east1-docker.pkg.dev/deepfenceio/deepfence/cloud_scanner:2.5.0"
+  # image_name          = "us-east1-docker.pkg.dev/deepfenceio/deepfence/cloud_scanner:2.5.1"
   # project_id example: dev1-123456
   project_id          = "<PROJECT_ID>"
   # region example: asia-east1
@@ -87,7 +87,7 @@ module "cloud-scanner_example_multiple-projects" {
 |------|-------------|------|---------|:--------:|
 | <a name="input_cpu"></a> [cpu](#input\_cpu) | Amount of CPU to reserve for cloud-scanner cloud run service | `string` | `"4"` | no |
 | <a name="input_deepfence-key"></a> [deepfence-key](#input\_deepfence-key) | deepfence-key | `string` | n/a | yes |
-| <a name="input_image_name"></a> [image\_name](#input\_image\_name) | Cloud Scanner docker image | `string` | `"us-east1-docker.pkg.dev/deepfenceio/deepfence/cloud_scanner_ce:2.5.0"` | no |
+| <a name="input_image_name"></a> [image\_name](#input\_image\_name) | Cloud Scanner docker image | `string` | `"us-east1-docker.pkg.dev/deepfenceio/deepfence/cloud_scanner_ce:2.5.1"` | no |
 | <a name="input_ip_cidr_range_svpca"></a> [ip\_cidr\_range\_svpca](#input\_ip\_cidr\_range\_svpca) | IP CIDR Range for serverless vpc connector to be created for private ip console | `string` | `"11.0.0.0/28"` | no |
 | <a name="input_labels"></a> [labels](#input\_labels) | n/a | `map(string)` | <pre>{<br>  "name": "deepfence-cloud-scanner"<br>}</pre> | no |
 | <a name="input_log_level"></a> [log\_level](#input\_log\_level) | Log level | `string` | `"info"` | no |

@@ -31,7 +31,7 @@ data "google_container_cluster" "target_cluster" {
 
 module "cloud_scanner_example_single_project" {
   source                     = "deepfence/cloud-scanner/gcp//examples/gke"
-  version                    = "0.9.0"
+  version                    = "0.9.1"
   gke_host                   = "https://${data.google_container_cluster.target_cluster.endpoint}"
   gke_token                  = data.google_client_config.current.access_token
   gke_cluster_ca_certificate = base64decode(data.google_container_cluster.target_cluster.master_auth[0].cluster_ca_certificate,)
@@ -41,7 +41,7 @@ module "cloud_scanner_example_single_project" {
   deepfence-key              = "<Deepfence-key>"
   # quay.io/deepfenceio/cloud_scanner_ce if using ThreatMapper. quay.io/deepfenceio/cloud_scanner if using ThreatStryker
   image_name                 = "quay.io/deepfenceio/cloud_scanner_ce"
-  image_tag                  = "2.5.0"
+  image_tag                  = "2.5.1"
   # project_id example: dev1-123456
   project_id                 = "<PROJECT_ID>"
   # region example: asia-east1
@@ -69,7 +69,7 @@ data "google_container_cluster" "target_cluster" {
 
 module "cloud_scanner_example_multiple_project" {
   source                     = "deepfence/cloud-scanner/gcp//examples/gke"
-  version                    = "0.9.0"
+  version                    = "0.9.1"
   name                       = "deepfence-cloud-scanner"
   gke_host                   = "https://${data.google_container_cluster.target_cluster.endpoint}"
   gke_token                  = data.google_client_config.current.access_token
@@ -79,7 +79,7 @@ module "cloud_scanner_example_multiple_project" {
   deepfence-key              = "<Deepfence-key>"
   # quay.io/deepfenceio/cloud_scanner_ce if using ThreatMapper. quay.io/deepfenceio/cloud_scanner if using ThreatStryker
   image_name                 = "quay.io/deepfenceio/cloud_scanner_ce"
-  image_tag                  = "2.5.0"
+  image_tag                  = "2.5.1"
   # project_id example: dev1-123456
   project_id                 = "<PROJECT_ID>"
   # region example: asia-east1
@@ -133,9 +133,9 @@ module "cloud_scanner_example_multiple_project" {
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_cloud_scanner_chart_name"></a> [cloud\_scanner\_chart\_name](#input\_cloud\_scanner\_chart\_name) | cloud scanner chart name | `string` | `"deepfence-cloud-scanner"` | no |
-| <a name="input_cloud_scanner_chart_version"></a> [cloud\_scanner\_chart\_version](#input\_cloud\_scanner\_chart\_version) | cloud scanner chart version | `string` | `"2.5.0"` | no |
+| <a name="input_cloud_scanner_chart_version"></a> [cloud\_scanner\_chart\_version](#input\_cloud\_scanner\_chart\_version) | cloud scanner chart version | `string` | `"2.5.1"` | no |
 | <a name="input_cloud_scanner_image"></a> [cloud\_scanner\_image](#input\_cloud\_scanner\_image) | quay.io/deepfenceio/cloud\_scanner\_ce if using ThreatMapper. quay.io/deepfenceio/cloud\_scanner if using ThreatStryker | `string` | `"quay.io/deepfenceio/cloud_scanner_ce"` | no |
-| <a name="input_cloud_scanner_image_tag"></a> [cloud\_scanner\_image\_tag](#input\_cloud\_scanner\_image\_tag) | cloud scanner container image tag | `string` | `"2.5.0"` | no |
+| <a name="input_cloud_scanner_image_tag"></a> [cloud\_scanner\_image\_tag](#input\_cloud\_scanner\_image\_tag) | cloud scanner container image tag | `string` | `"2.5.1"` | no |
 | <a name="input_cloud_scanner_role"></a> [cloud\_scanner\_role](#input\_cloud\_scanner\_role) | cloud scanner role, it can be roles/iam.securityReviewer or roles/viewer | `string` | `"roles/iam.securityReviewer"` | no |
 | <a name="input_cluster_location"></a> [cluster\_location](#input\_cluster\_location) | target cluster location/region | `string` | n/a | yes |
 | <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | target cluster to install cloud scanner | `string` | n/a | yes |
